@@ -229,6 +229,12 @@ def take_photos(camera, n_photos):
     
 #    camera.color_effects = (128,128)
     camera.hflip = False  # mirror image preview
+
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(7, GPIO.OUT)
+
+    GPIO.output(7, GPIO.HIGH)
+#    with picamera.PiCamera() as camera:
     camera.start_preview()
     time.sleep(config.prev_delay_s)
 
@@ -236,6 +242,7 @@ def take_photos(camera, n_photos):
     camera.capture_sequence(outputs=streams, format='gif')
 
     camera.stop_preview()
+    GPIO.output(7, GPIO.LOW)
 #    camera.close()
     for stream in streams:
         stream.seek(0)
@@ -256,10 +263,10 @@ def loop(screen, bg_thread):
     camera = picamera.PiCamera()
     camera.vflip = False
     camera.hflip = True
-    camera.iso = 400
+   # camera.iso = 200
     camera.resolution = (204, 272)
-    camera.brightness = 50
-    camera.contrast = 50
+  #  camera.brightness = 75
+  #  camera.contrast = 75
   #  camera.shutter_speed = 800
 
     while True:
