@@ -4,7 +4,7 @@ monitor_h = 480
 photo_w = 240
 photo_h = 320
 
-frame_duration_ms = 100
+frame_duration_ms = 400
 n_frames = 4
 photos_per_frame = 4
 
